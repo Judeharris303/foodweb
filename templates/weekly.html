@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Weekly Dinner</h1>
+<form method="POST" class="bg-white p-4 rounded">
+  <div class="mb-3">
+    <label>Number of Jude's Recipes:</label>
+    <input type="text" name="my_count" class="form-control" value="1">
+  </div>
+  <div class="mb-3">
+    <label>Number of Freya's Recipes:</label>
+    <input type="text" name="gf_count" class="form-control" value="1">
+  </div>
+  <div class="mb-3">
+    <label>Number of Spoonacular Recipes:</label>
+    <input type="text" name="api_count" class="form-control" value="1">
+  </div>
+  <button type="submit" class="btn btn-primary">Generate Weekly Plan</button>
+</form>
+{% endblock %}

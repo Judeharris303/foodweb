@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Search Results</h1>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+{% for rec in recipes %}
+  <div class="col">
+    <div class="card h-100">
+      <div class="card-body">
+        <h5 class="card-title">{{ rec.name }}</h5>
+        <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="collapse" data-bs-target="#inst-{{ loop.index }}">Instructions</button>
+        <button class="btn btn-sm btn-outline-secondary" data-bs-toggle="collapse" data-bs-target="#nutr-{{ loop.index }}">Nutrients</button>
+        
+        <div id="inst-{{ loop.index }}" class="collapse mt-2">
+          <pre class="bg-light p-2">{{ rec.instructions }}</pre>
+        </div>
+        <div id="nutr-{{ loop.index }}" class="collapse mt-2">
+          <ul>
+            {% for n in rec.nutrients %}
+            <li>{{ n.name }}: {{ n.amount }}{{ n.unit }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        
+        <!-- Yellow + for Jude, Pink + for Freya -->
+        <button class="btn btn-sm" style="background-color: yellow;">+ Jude</button>
+        <button class="btn btn-sm" style="background-color: pink;">+ Freya</button>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>
+{% endblock %}

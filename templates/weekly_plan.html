@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Weekly Plan</h1>
+
+<div class="row">
+  <div class="col-md-8">
+    <h2>Recipes</h2>
+    {% for rec in recipes %}
+    <div class="card mb-3">
+      <div class="card-body">
+        <h5 class="card-title">{{ rec.name }} <span class="badge bg-secondary">{{ rec.source }}</span></h5>
+        <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="collapse" data-bs-target="#inst-{{ loop.index }}">See Instructions</button>
+        <button class="btn btn-outline-secondary btn-sm" data-bs-toggle="collapse" data-bs-target="#nutr-{{ loop.index }}">Show Nutrients</button>
+        
+        <div id="inst-{{ loop.index }}" class="collapse mt-2">
+          <pre class="bg-light p-2">{{ rec.instructions }}</pre>
+        </div>
+        <div id="nutr-{{ loop.index }}" class="collapse mt-2">
+          <ul>
+            {% for n in rec.nutrients %}
+            <li>{{ n.name }}: {{ n.amount }}{{ n.unit }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  
+  <div class="col-md-4">
+    <h2>Shopping List</h2>
+    <ul class="list-group">
+      {% for item in shopping %}
+      <li class="list-group-item">{{ item }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
